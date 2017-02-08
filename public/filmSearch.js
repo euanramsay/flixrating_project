@@ -1,3 +1,5 @@
+var listing = [];
+
 var FilmSearch = function() {
   console.log("film search");
   document.getElementById("main").innerHTML = "";
@@ -13,10 +15,37 @@ var FilmSearch = function() {
 
 console.log(title_three);
 
+var film_array = [title_one, title_two, title_three];
+
+var step = 0;
+
+function search(array, callback) {
+    for (step = 0; step < array.length; step++) {
+  apiSearch(array[step]);
+}
+    callback();
+}
+
+search(film_array, function() {
+    console.log('Finished eating my sandwich.');
+});
+
+
+
+
+    console.log(film_array);
+    console.log(listing);
+ 
+}
+
+
+  
+
+
+var apiSearch = function(title) {
   var url = 'http://www.omdbapi.com/?t=' + title + '&plot=full&r=json'
   console.log(url);
   makeRequest(url, requestComplete);
-
 }
 
 var makeRequest = function(url, callback) {
@@ -28,12 +57,12 @@ var makeRequest = function(url, callback) {
 
 var requestComplete = function() {
   console.log("Success!");
-  if (this.status != 200) return;
-
+  console.log(this.status);
+  // if (this.status != 200) return;
   var jsonString = this.responseText;
-  var listing = JSON.parse(jsonString);
-  console.log(listing);
-  console.log(listing.Title);
-  new PopulateList(listing);
+  var film_info = JSON.parse(jsonString);
+  listing.push(film_info);
+
 }
-}
+
+
