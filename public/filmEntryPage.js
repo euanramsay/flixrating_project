@@ -1,3 +1,5 @@
+var year = 1960;
+
 var FilmEntryPage = function() {
   console.log("film entry page")
   document.getElementById("main").innerHTML = "";
@@ -5,6 +7,8 @@ var FilmEntryPage = function() {
   var br_two = document.createElement("br");
   var br_three = document.createElement("br");
   var film_one = document.createElement("input");
+  var p = document.createElement("p");
+  p.innerText = "Enter your favorite films of the " + year +"s"
   film_one.setAttribute("type", "text");
   film_one.setAttribute("placeholder", "Type film one title here");
   var film_two = document.createElement("input");
@@ -24,6 +28,7 @@ var FilmEntryPage = function() {
     console.log(film_list);
     new FilmSearch();
   });
+  main.appendChild(p);
   main.appendChild(film_one);
   main.appendChild(br_one);
   main.appendChild(film_two);
