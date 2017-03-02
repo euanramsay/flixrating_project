@@ -16,7 +16,7 @@ var FilmSearch = function() {
 
   search(film_array, function() {
     console.log(listing);
-    new FilmEntryPage;
+    new ResultsPage;
   });
 
 }
@@ -32,7 +32,6 @@ function search(array, callback) {
 
 var apiSearch = function(title) {
   var url = 'http://www.omdbapi.com/?t=' + title + '&plot=full&r=json'
-  console.log(url);
   makeRequest(url, requestComplete);
 }
 
@@ -45,7 +44,7 @@ var makeRequest = function(url, callback) {
 
 var requestComplete = function() {
   console.log("Success!");
-  // if (this.status != 200) return;
+  if (this.status != 200) return;
   var jsonString = this.responseText;
   var film_info = JSON.parse(jsonString);
   listing.push(film_info);
